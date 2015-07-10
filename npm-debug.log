@@ -1,0 +1,272 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\iojs\\node.exe',
+1 verbose cli   'C:\\Program Files\\iojs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   'slideout' ]
+2 info using npm@2.7.6
+3 info using node@v1.7.1
+4 verbose install initial load of C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\package.json
+5 warn package.json LiveExplorer@ No description
+6 warn package.json LiveExplorer@ No repository field.
+7 warn package.json LiveExplorer@ No README data
+8 verbose installManyTop reading scoped package data from C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\express\package.json
+9 verbose installManyTop reading scoped package data from C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\stylus\package.json
+10 verbose readDependencies loading dependencies from C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\package.json
+11 silly cache add args [ 'slideout', null ]
+12 verbose cache add spec slideout
+13 silly cache add parsed spec { raw: 'slideout',
+13 silly cache add   scope: null,
+13 silly cache add   name: 'slideout',
+13 silly cache add   rawSpec: '',
+13 silly cache add   spec: '*',
+13 silly cache add   type: 'range' }
+14 silly addNamed slideout@*
+15 verbose addNamed "*" is a valid semver range for slideout
+16 silly addNameRange { name: 'slideout', range: '*', hasData: false }
+17 silly mapToRegistry name slideout
+18 silly mapToRegistry using default registry
+19 silly mapToRegistry registry https://registry.npmjs.org/
+20 silly mapToRegistry uri https://registry.npmjs.org/slideout
+21 verbose addNameRange registry:https://registry.npmjs.org/slideout not in flight; fetching
+22 verbose request uri https://registry.npmjs.org/slideout
+23 verbose request no auth needed
+24 info attempt registry request try #1 at 09:15:35
+25 verbose request id 2a8939e286393447
+26 http request GET https://registry.npmjs.org/slideout
+27 http 200 https://registry.npmjs.org/slideout
+28 silly get cb [ 200,
+28 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 silly get     etag: '"71QU2W76GPSWWTKRY5AQGQVLE"',
+28 silly get     'content-type': 'application/json',
+28 silly get     'cache-control': 'max-age=60',
+28 silly get     'content-length': '16875',
+28 silly get     'accept-ranges': 'bytes',
+28 silly get     date: 'Fri, 01 May 2015 13:15:36 GMT',
+28 silly get     via: '1.1 varnish',
+28 silly get     age: '0',
+28 silly get     connection: 'keep-alive',
+28 silly get     'x-served-by': 'cache-atl6234-ATL',
+28 silly get     'x-cache': 'MISS',
+28 silly get     'x-cache-hits': '0',
+28 silly get     'x-timer': 'S1430486136.214559,VS0,VE381',
+28 silly get     vary: 'Accept' } ]
+29 verbose get saving slideout to C:\Users\jferrara\AppData\Roaming\npm-cache\registry.npmjs.org\slideout\.cache.json
+30 silly addNameRange number 2 { name: 'slideout', range: '*', hasData: true }
+31 silly addNameRange versions [ 'slideout',
+31 silly addNameRange   [ '0.1.1', '0.1.2', '0.1.3', '0.1.4', '0.1.5', '0.1.6', '0.1.7' ] ]
+32 silly addNamed slideout@0.1.7
+33 verbose addNamed "0.1.7" is a plain semver version for slideout
+34 silly mapToRegistry name slideout
+35 silly mapToRegistry using default registry
+36 silly mapToRegistry registry https://registry.npmjs.org/
+37 silly mapToRegistry uri https://registry.npmjs.org/slideout
+38 verbose addRemoteTarball https://registry.npmjs.org/slideout/-/slideout-0.1.7.tgz not in flight; adding
+39 verbose addRemoteTarball [ 'https://registry.npmjs.org/slideout/-/slideout-0.1.7.tgz',
+39 verbose addRemoteTarball   'cb677099e948abfdb477065e91b8cbfda7a2773b' ]
+40 info retry fetch attempt 1 at 09:15:36
+41 info attempt registry request try #1 at 09:15:36
+42 http fetch GET https://registry.npmjs.org/slideout/-/slideout-0.1.7.tgz
+43 http fetch 200 https://registry.npmjs.org/slideout/-/slideout-0.1.7.tgz
+44 silly fetchAndShaCheck shasum cb677099e948abfdb477065e91b8cbfda7a2773b
+45 verbose addTmpTarball C:\Users\jferrara\AppData\Local\Temp\npm-2156-a4dd8e16\registry.npmjs.org\slideout\-\slideout-0.1.7.tgz not in flight; adding
+46 verbose addTmpTarball already have metadata; skipping unpack for slideout@0.1.7
+47 silly cache afterAdd slideout@0.1.7
+48 verbose afterAdd C:\Users\jferrara\AppData\Roaming\npm-cache\slideout\0.1.7\package\package.json not in flight; writing
+49 verbose afterAdd C:\Users\jferrara\AppData\Roaming\npm-cache\slideout\0.1.7\package\package.json written
+50 silly install resolved [ { name: 'slideout',
+50 silly install resolved     repository: { type: 'git', url: 'git@github.com:mango/slideout.git' },
+50 silly install resolved     description: 'A touch slideout navigation menu for your mobile web apps.',
+50 silly install resolved     author: { name: 'Guille Paz', email: 'guille87paz@gmail.com' },
+50 silly install resolved     version: '0.1.7',
+50 silly install resolved     scripts:
+50 silly install resolved      { build: 'node browserify.js',
+50 silly install resolved        test: 'npm run build && _mocha',
+50 silly install resolved        dist: 'node browserify.js && uglifyjs ./dist/slideout.js -m -o ./dist/slideout.min.js',
+50 silly install resolved        hint: 'jshint index.js' },
+50 silly install resolved     dependencies:
+50 silly install resolved      { decouple: '0.0.1',
+50 silly install resolved        emitter: 'git+https://github.com/Mango/emitter.git#0.0.4' },
+50 silly install resolved     devDependencies:
+50 silly install resolved      { 'better-assert': '1.0.1',
+50 silly install resolved        browserify: '7.0.3',
+50 silly install resolved        jsdom: '3.1.1',
+50 silly install resolved        mocha: '2.1.0',
+50 silly install resolved        'uglify-js': '2.4.15',
+50 silly install resolved        jshint: '2.6.3' },
+50 silly install resolved     main: 'index.js',
+50 silly install resolved     keywords: [ 'slideout', 'offcanvas', 'menu', 'touch' ],
+50 silly install resolved     license: 'MIT',
+50 silly install resolved     spm: { dependencies: [Object], main: 'index.js' },
+50 silly install resolved     bugs: { url: 'https://github.com/mango/slideout/issues' },
+50 silly install resolved     homepage: 'https://github.com/mango/slideout',
+50 silly install resolved     _id: 'slideout@0.1.7',
+50 silly install resolved     dist:
+50 silly install resolved      { shasum: 'cb677099e948abfdb477065e91b8cbfda7a2773b',
+50 silly install resolved        tarball: 'http://registry.npmjs.org/slideout/-/slideout-0.1.7.tgz' },
+50 silly install resolved     _from: 'slideout@*',
+50 silly install resolved     _npmVersion: '1.4.3',
+50 silly install resolved     _npmUser: { name: 'pazguille', email: 'guille87paz@gmail.com' },
+50 silly install resolved     maintainers: [ [Object] ],
+50 silly install resolved     directories: {},
+50 silly install resolved     _shasum: 'cb677099e948abfdb477065e91b8cbfda7a2773b',
+50 silly install resolved     _resolved: 'https://registry.npmjs.org/slideout/-/slideout-0.1.7.tgz' } ]
+51 info install slideout@0.1.7 into C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer
+52 info installOne slideout@0.1.7
+53 verbose installOne of slideout to C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer not in flight; installing
+54 verbose lock using C:\Users\jferrara\AppData\Roaming\npm-cache\_locks\slideout-b8b1b729ab1bd08c.lock for C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+55 silly install write writing slideout 0.1.7 to C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+56 verbose unbuild node_modules\slideout
+57 silly gentlyRm C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout is being purged from base C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer
+58 verbose gentlyRm don't care about contents; nuking C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+59 verbose tar unpack C:\Users\jferrara\AppData\Roaming\npm-cache\slideout\0.1.7\package.tgz
+60 verbose tar unpacking to C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+61 silly gentlyRm C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout is being purged
+62 verbose gentlyRm don't care about contents; nuking C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+63 silly gunzTarPerm modes [ '777', '666' ]
+64 silly gunzTarPerm extractEntry package.json
+65 silly gunzTarPerm modified mode [ 'package.json', 420, 438 ]
+66 silly gunzTarPerm extractEntry .npmignore
+67 silly gunzTarPerm modified mode [ '.npmignore', 420, 438 ]
+68 silly gunzTarPerm extractEntry README.md
+69 silly gunzTarPerm modified mode [ 'README.md', 420, 438 ]
+70 silly gunzTarPerm extractEntry LICENSE
+71 silly gunzTarPerm modified mode [ 'LICENSE', 420, 438 ]
+72 silly gunzTarPerm extractEntry browserify.js
+73 silly gunzTarPerm modified mode [ 'browserify.js', 420, 438 ]
+74 silly gunzTarPerm extractEntry index.js
+75 silly gunzTarPerm modified mode [ 'index.js', 420, 438 ]
+76 silly gunzTarPerm extractEntry bower.json
+77 silly gunzTarPerm modified mode [ 'bower.json', 420, 438 ]
+78 silly gunzTarPerm extractEntry CONTRIBUTING.md
+79 silly gunzTarPerm modified mode [ 'CONTRIBUTING.md', 420, 438 ]
+80 silly gunzTarPerm extractEntry component.json
+81 silly gunzTarPerm modified mode [ 'component.json', 420, 438 ]
+82 silly gunzTarPerm extractEntry dist/slideout.js
+83 silly gunzTarPerm modified mode [ 'dist/slideout.js', 420, 438 ]
+84 silly gunzTarPerm extractEntry dist/slideout.min.js
+85 silly gunzTarPerm modified mode [ 'dist/slideout.min.js', 420, 438 ]
+86 silly gunzTarPerm extractEntry index.css
+87 silly gunzTarPerm modified mode [ 'index.css', 420, 438 ]
+88 silly gunzTarPerm extractEntry .jshintrc
+89 silly gunzTarPerm modified mode [ '.jshintrc', 420, 438 ]
+90 silly gunzTarPerm extractEntry .travis.yml
+91 silly gunzTarPerm modified mode [ '.travis.yml', 420, 438 ]
+92 silly gunzTarPerm extractEntry test/test.js
+93 silly gunzTarPerm modified mode [ 'test/test.js', 420, 438 ]
+94 silly gunzTarPerm extractEntry test/assets/menu.png
+95 silly gunzTarPerm modified mode [ 'test/assets/menu.png', 493, 511 ]
+96 silly gunzTarPerm extractEntry test/index.html
+97 silly gunzTarPerm modified mode [ 'test/index.html', 420, 438 ]
+98 silly gunzTarPerm extractEntry test/test.css
+99 silly gunzTarPerm modified mode [ 'test/test.css', 493, 511 ]
+100 verbose write writing to C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout\package.json
+101 info preinstall slideout@0.1.7
+102 verbose readDependencies loading dependencies from C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout\package.json
+103 silly prepareForInstallMany adding decouple@0.0.1 from slideout dependencies
+104 silly prepareForInstallMany adding emitter@git+https://github.com/Mango/emitter.git#0.0.4 from slideout dependencies
+105 verbose readDependencies loading dependencies from C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout\package.json
+106 silly cache add args [ 'decouple@0.0.1', null ]
+107 verbose cache add spec decouple@0.0.1
+108 silly cache add args [ 'emitter@git+https://github.com/Mango/emitter.git#0.0.4',
+108 silly cache add   null ]
+109 verbose cache add spec emitter@git+https://github.com/Mango/emitter.git#0.0.4
+110 silly cache add parsed spec { raw: 'decouple@0.0.1',
+110 silly cache add   scope: null,
+110 silly cache add   name: 'decouple',
+110 silly cache add   rawSpec: '0.0.1',
+110 silly cache add   spec: '0.0.1',
+110 silly cache add   type: 'version' }
+111 silly addNamed decouple@0.0.1
+112 verbose addNamed "0.0.1" is a plain semver version for decouple
+113 silly mapToRegistry name decouple
+114 silly mapToRegistry using default registry
+115 silly mapToRegistry registry https://registry.npmjs.org/
+116 silly mapToRegistry uri https://registry.npmjs.org/decouple
+117 verbose addNameVersion registry:https://registry.npmjs.org/decouple not in flight; fetching
+118 silly cache add parsed spec { raw: 'emitter@git+https://github.com/Mango/emitter.git#0.0.4',
+118 silly cache add   scope: null,
+118 silly cache add   name: 'emitter',
+118 silly cache add   rawSpec: 'git+https://github.com/Mango/emitter.git#0.0.4',
+118 silly cache add   spec: 'git+ssh://git@github.com/Mango/emitter.git#0.0.4',
+118 silly cache add   type: 'hosted',
+118 silly cache add   hosted:
+118 silly cache add    { type: 'github',
+118 silly cache add      ssh: 'git@github.com:Mango/emitter.git#0.0.4',
+118 silly cache add      sshUrl: 'git+ssh://git@github.com/Mango/emitter.git#0.0.4',
+118 silly cache add      httpsUrl: 'https://github.com/Mango/emitter.git#0.0.4',
+118 silly cache add      directUrl: 'https://raw.githubusercontent.com/Mango/emitter/0.0.4/package.json' } }
+119 info maybeGithub Attempting git+https://github.com/Mango/emitter.git#0.0.4 from git://github.com/Mango/emitter.git#0.0.4
+120 verbose addRemoteGit git-github-com-Mango-emitter-git-ee53acf1 not in flight; caching
+121 verbose request uri https://registry.npmjs.org/decouple
+122 verbose request no auth needed
+123 info attempt registry request try #1 at 09:15:37
+124 http request GET https://registry.npmjs.org/decouple
+125 verbose git clone --template=C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git://github.com/Mango/emitter.git C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\git-github-com-Mango-emitter-git-ee53acf1: undefined
+125 verbose git clone --template=C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror git://github.com/Mango/emitter.git C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\git-github-com-Mango-emitter-git-ee53acf1: undefined
+126 info maybeGithub Couldn't clone git://github.com/Mango/emitter.git#0.0.4
+127 info maybeGithub Now attempting git+https://github.com/Mango/emitter.git#0.0.4 from git+ssh://git@github.com/Mango/emitter.git#0.0.4
+128 verbose addRemoteGit ssh-git-github-com-Mango-emitter-git-1ae254a8 not in flight; caching
+129 error git clone --template=C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/Mango/emitter.git C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-Mango-emitter-git-1ae254a8: undefined
+129 error git clone --template=C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\_templates --mirror ssh://git@github.com/Mango/emitter.git C:\Users\jferrara\AppData\Roaming\npm-cache\_git-remotes\ssh-git-github-com-Mango-emitter-git-1ae254a8: undefined
+130 http 200 https://registry.npmjs.org/decouple
+131 silly get cb [ 200,
+131 silly get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+131 silly get     etag: '"68BMH7U3F3YB737A50VP8776E"',
+131 silly get     'content-type': 'application/json',
+131 silly get     'cache-control': 'max-age=60',
+131 silly get     'content-length': '4029',
+131 silly get     'accept-ranges': 'bytes',
+131 silly get     date: 'Fri, 01 May 2015 13:15:37 GMT',
+131 silly get     via: '1.1 varnish',
+131 silly get     age: '0',
+131 silly get     connection: 'keep-alive',
+131 silly get     'x-served-by': 'cache-atl6223-ATL',
+131 silly get     'x-cache': 'MISS',
+131 silly get     'x-cache-hits': '0',
+131 silly get     'x-timer': 'S1430486137.516966,VS0,VE30',
+131 silly get     vary: 'Accept' } ]
+132 verbose get saving decouple to C:\Users\jferrara\AppData\Roaming\npm-cache\registry.npmjs.org\decouple\.cache.json
+133 silly mapToRegistry name decouple
+134 silly mapToRegistry using default registry
+135 silly mapToRegistry registry https://registry.npmjs.org/
+136 silly mapToRegistry uri https://registry.npmjs.org/decouple
+137 verbose addRemoteTarball https://registry.npmjs.org/decouple/-/decouple-0.0.1.tgz not in flight; adding
+138 verbose addRemoteTarball [ 'https://registry.npmjs.org/decouple/-/decouple-0.0.1.tgz',
+138 verbose addRemoteTarball   'dfe232cd13e4ca38980c1dc69abf8df20c9880e3' ]
+139 info retry fetch attempt 1 at 09:15:37
+140 info attempt registry request try #1 at 09:15:37
+141 http fetch GET https://registry.npmjs.org/decouple/-/decouple-0.0.1.tgz
+142 http fetch 200 https://registry.npmjs.org/decouple/-/decouple-0.0.1.tgz
+143 silly fetchAndShaCheck shasum dfe232cd13e4ca38980c1dc69abf8df20c9880e3
+144 verbose addTmpTarball C:\Users\jferrara\AppData\Local\Temp\npm-2156-a4dd8e16\registry.npmjs.org\decouple\-\decouple-0.0.1.tgz not in flight; adding
+145 verbose addTmpTarball already have metadata; skipping unpack for decouple@0.0.1
+146 silly cache afterAdd decouple@0.0.1
+147 verbose afterAdd C:\Users\jferrara\AppData\Roaming\npm-cache\decouple\0.0.1\package\package.json not in flight; writing
+148 verbose afterAdd C:\Users\jferrara\AppData\Roaming\npm-cache\decouple\0.0.1\package\package.json written
+149 verbose about to build C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+150 verbose unlock done using C:\Users\jferrara\AppData\Roaming\npm-cache\_locks\slideout-b8b1b729ab1bd08c.lock for C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+151 verbose stack Error: not found: git
+151 verbose stack     at F (C:\Program Files\iojs\node_modules\npm\node_modules\which\which.js:40:28)
+151 verbose stack     at E (C:\Program Files\iojs\node_modules\npm\node_modules\which\which.js:43:29)
+151 verbose stack     at C:\Program Files\iojs\node_modules\npm\node_modules\which\which.js:54:16
+151 verbose stack     at FSReqWrap.oncomplete (fs.js:78:15)
+152 verbose cwd C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer
+153 error Windows_NT 6.3.9600
+154 error argv "C:\\Program Files\\iojs\\node.exe" "C:\\Program Files\\iojs\\node_modules\\npm\\bin\\npm-cli.js" "install" "slideout"
+155 error node v1.7.1
+156 error npm  v2.7.6
+157 error code ENOGIT
+158 error not found: git
+159 error Failed using git.
+159 error This is most likely not a problem with npm itself.
+159 error Please check if you have git installed and in your PATH.
+160 verbose exit [ 1, true ]
+161 verbose unbuild node_modules\slideout
+162 info preuninstall slideout@0.1.7
+163 info uninstall slideout@0.1.7
+164 verbose unbuild rmStuff slideout@0.1.7 from C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules
+165 info postuninstall slideout@0.1.7
+166 silly gentlyRm C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout is being purged from base C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer
+167 verbose gentlyRm don't care about contents; nuking C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+168 silly vacuum-fs purging C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules\slideout
+169 silly vacuum-fs quitting because other entries in C:\Users\jferrara\__IOJS\_Projects\DesktopApps\LiveExplorer\node_modules

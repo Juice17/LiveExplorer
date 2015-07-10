@@ -1,0 +1,235 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	/* 
+	font-size: 100%;
+	font: inherit; 
+	*/
+	font-size: 12px;
+	/*font-family: Monospace, Lucida Console, Microsoft Sans Serif,sans-serif,verdana,arial;*/
+	font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* ** End css reset ** */
+
+body, #body { min-height: 100%; height: 100%; background: #ffffff; }
+
+body, input, select, textarea { /*font-family: Monospace, Lucida Console, Microsoft Sans Serif,sans-serif,verdana,arial;*/ font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif; }
+
+/* header */
+header {
+	width: 100%;
+	position: absolute;
+	height: 50px;
+	background: #0072C6;
+}
+	#address_bar {
+		position: absolute;
+		left: 10px;
+		right: 10px;
+		height: 30px;
+		top: 10px;
+		/*border: 1px solid #666666;*/
+		padding: 0 35px 0 0;
+		background: #ffffff;
+	}
+		#inp_address_bar {
+			width: 100%;
+			height: 2em;
+			line-height: 26px;
+			border: none;
+			margin-left: 10px;
+			outline: none;
+		}
+
+/* header */
+
+/* hieararchy */
+
+#hierarchy { 
+	position: absolute; 
+	/* height: 100%; */
+	top: 50px;
+	bottom: 0;
+	padding: 4px;
+	/*border-right: 2px solid #aaaaaa; */
+	background: #F3F3F3;
+   transition:width 0.25s;
+   -webkit-transition:width .25s;
+}
+
+#hierarchy:focus {
+	border-right: 2px solid #aaaaaa;	
+}
+
+#hierarchy.open {
+	min-width: 100px;
+	max-width: 400px;
+	width: 300px; 	
+	left: 0px; 	
+}
+
+#hierarchy.close {
+	min-width: 0px;
+	max-width: 0px;
+	width: 0px;
+	left: -10px; 	
+}
+
+.ui-resizable-helper {
+/*	border-right: 2px dashed #dddddd;
+	opacity: .6;
+	background: #ffffff;*/
+	border-right: 2px solid #dddddd;
+}
+
+/* hierarchy */
+
+/* display */
+
+#display {
+	background: #ffffff;
+	display: none;
+	position: absolute;
+	top: 50px;
+	right: 0;
+	bottom: 0;
+   left: 300px;
+   transition:left 0.25s;
+   -webkit-transition:left .25s;
+}
+
+#display .ui-tabs,
+#display .ui-tabs-panel { padding: 5px; }
+
+#display .display.ui-tabs-panel { padding: 5px 0; }
+
+	#display table {
+		border: 1px solid #bbbbbb;
+		width: 100%;
+	}
+	#display th,
+	#display td { padding: 5px; border: 1px solid #bbbbbb; }
+
+/* display */
+
+
+/* tabs */
+
+#tab_container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+   left: 0;
+   background: #ffffff;
+}
+
+	/*#tab_container ul li { border: none !important; }*/
+	#tab_container ul li a { font-size: 11px; }
+	#tab_container .display { overflow-x: auto; overflow-y: auto; }
+	#tab_container.ui-widget-content { border: none; }
+
+/* tabs */
+
+/*  jstree */
+#hierarchy_tree { width: auto; height: 100%; overflow-x: auto; overflow-y: auto; }
+/*  jstree */
+
+
+/* context menu */
+.context-menu.address_bar {
+  width: 135px;
+}
+
+.context-menu {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  padding: 12px 0;
+  background-color: #fff;
+  border: solid 1px #dfdfdf;
+  box-shadow: 1px 1px 2px #cfcfcf;
+}
+
+.context-menu--active {
+  display: block;
+}
+
+.context-menu__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.context-menu__item {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.context-menu__item:last-child {
+  margin-bottom: 0;
+}
+
+.context-menu__link {
+  display: block;
+  padding: 4px 12px;
+  color: #0066aa;
+  text-decoration: none;
+}
+
+.context-menu__link:hover {
+  color: #fff;
+  background-color: #0066aa;
+}
+/* context menu */
+
+
+/*
+	jquery ui reset
+*/
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { border-bottom-right-radius: 0; }
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { border-bottom-left-radius: 0; }
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { border-top-right-radius: 0; }
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { border-top-left-radius: 0; }
