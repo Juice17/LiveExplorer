@@ -1,25 +1,5 @@
 {
-    "webexe_settings": {
-        "linux-x32": false, 
-        "export_dir": "output", 
-        "windows-x64": true, 
-        "download_dir": "C:\\Users\\jferrara\\AppData\\Local\\Web2Executable\\Web2Executable\\files\\downloads", 
-        "nw_compression_level": 0, 
-        "mac-x32": false, 
-        "windows-x32": false, 
-        "mac-x64": false, 
-        "nw_version": "0.12.2", 
-        "force_download": true, 
-        "linux-x64": false
-    }, 
-    "js-flags": "", 
     "name": "LiveExplorer", 
-    "single-instance": true, 
-    "nodejs": true, 
-    "chromium-args": "", 
-    "additional_trust_anchors": "", 
-    "user-agent": "", 
-    "inject-js-end": "", 
     "keywords": [], 
     "window": {
         "fullscreen": false, 
@@ -44,7 +24,6 @@
     }, 
     "version": "0.1.0", 
     "snapshot": "", 
-    "node-main": "js\\main.js", 
     "webkit": {
         "page-cache": false, 
         "java": false, 
