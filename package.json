@@ -12,7 +12,7 @@
         "title": "LiveExplorer", 
         "visible": true, 
         "height": 800, 
-        "exe_icon": "images\\icons\\tray.png", 
+        "exe_icon": "images\\icons\\nodeExplorer.png", 
         "width": 1200, 
         "as_desktop": true, 
         "position": "", 
@@ -20,7 +20,7 @@
         "mac_icon": "", 
         "transparent": false, 
         "toolbar": true, 
-        "icon": "images\\icons\\tray.png"
+        "icon": "images\\icons\\nodeExplorer_small.png"
     }, 
     "version": "0.1.0", 
     "snapshot": "", 

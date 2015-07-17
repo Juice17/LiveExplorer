@@ -64,7 +64,9 @@ var LO = {
 
 		blur: function(e){
 			LO.Window.Focused = false;
-		}
+		},
+
+		Debug: null
 	},
 
 	Utility: {

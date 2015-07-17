@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -52,9 +54,11 @@ table {
 }
 /* ** End css reset ** */
 
-body, #body { min-height: 100%; height: 100%; background: #ffffff; }
+body, #body { min-height: 100%; height: 100%; background: #0072C6; }
 
 body, input, select, textarea { /*font-family: Monospace, Lucida Console, Microsoft Sans Serif,sans-serif,verdana,arial;*/ font-family: "Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,sans-serif; }
+
+#body { overflow: hidden; }
 
 /* header */
 header {
@@ -91,9 +95,10 @@ header {
 	/* height: 100%; */
 	top: 50px;
 	bottom: 0;
-	padding: 4px;
+	padding: 0 5px 10px 10px;
+	width: 285px;
 	/*border-right: 2px solid #aaaaaa; */
-	background: #F3F3F3;
+	background: #0072C6;
    transition:width 0.25s;
    -webkit-transition:width .25s;
 }
@@ -128,21 +133,22 @@ header {
 /* display */
 
 #display {
-	background: #ffffff;
+	background: #0072C6;
 	display: none;
 	position: absolute;
 	top: 50px;
-	right: 0;
-	bottom: 0;
+	right: 10px;
+	bottom: 10px;
    left: 300px;
    transition:left 0.25s;
    -webkit-transition:left .25s;
+   overflow: auto;
 }
 
 #display .ui-tabs,
-#display .ui-tabs-panel { padding: 5px; }
+#display .ui-tabs-panel { padding: 0; }
 
-#display .display.ui-tabs-panel { padding: 5px 0; }
+#display .display.ui-tabs-panel { padding: 0; }
 
 	#display table {
 		border: 1px solid #bbbbbb;
@@ -150,6 +156,9 @@ header {
 	}
 	#display th,
 	#display td { padding: 5px; border: 1px solid #bbbbbb; }
+
+
+	#tab_display { padding: 5px; position: absolute; top: 37px; right: 0; bottom: 0; left: 0; overflow: auto; background: #ffffff;}
 
 /* display */
 
@@ -161,19 +170,19 @@ header {
 	top: 0;
 	right: 0;
 	bottom: 0;
-   left: 0;
-   background: #ffffff;
+   left: 5px;
+   background: #0072C6;
 }
 
 	/*#tab_container ul li { border: none !important; }*/
 	#tab_container ul li a { font-size: 11px; }
-	#tab_container .display { overflow-x: auto; overflow-y: auto; }
+	/*#tab_container .display { overflow-x: auto; overflow-y: auto; }*/
 	#tab_container.ui-widget-content { border: none; }
 
 /* tabs */
 
 /*  jstree */
-#hierarchy_tree { width: auto; height: 100%; overflow-x: auto; overflow-y: auto; }
+#hierarchy_tree { width: 100%; height: 100%; overflow-x: auto; overflow-y: auto; background: #ffffff;}
 /*  jstree */
 
 
@@ -224,6 +233,106 @@ header {
 }
 /* context menu */
 
+/* jsTree icons */
+.jstree-themeicon-custom { font-style: normal; color: #0078D7; }
+
+/* Object */
+.jstree-closed i[class*="XSAND0000100001"]::before { content: '\f114'; font-family: FontAwesome; }
+.jstree-open i[class*="XSAND0000100001"]::before { content: '\f115'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="XSAND0000100001"]::before { content: '\f114'; font-family: FontAwesome; }
+.jstree-closed > .jstree-clicked i[class*="XSAND0000100001"]::before { content: '\f07b'; font-family: FontAwesome; }
+
+.jstree-open > .jstree-anchor > i[class*="XSAND0000100001"]::before { content: '\f115'; font-family: FontAwesome; }
+.jstree-open > .jstree-clicked i[class*="XSAND0000100001"]::before { content: '\f07c'; font-family: FontAwesome; }
+
+.jstree-leaf > .jstree-anchor > i[class*="XSAND0000100001"]::before { content: '\f115'; font-family: FontAwesome;  }
+.jstree-leaf > .jstree-clicked i[class*="XSAND0000100001"]::before { content: '\f07c'; font-family: FontAwesome; }
+
+/* Event */
+.jstree-open i[class*="XSAND0000100001000090000L"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="XSAND0000100001000090000L"]::before,
+i[class*="XSAND0000100001000090000L"]::before { content: '\f073'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="XSAND0000100001000090000L"]::before { content: '\f073'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="XSAND0000100001000090000L"]::before,
+.jstree-clicked i[class*="XSAND0000100001000090000L"]::before,
+.jstree-leaf > .jstree-clicked i[class*="XSAND0000100001000090000L"]::before,
+.jstree-open > .jstree-anchor > i[class*="XSAND0000100001000090000L"]::before  { content: '\f073'; font-family: FontAwesome; font-weight: 600 }
+
+
+
+ /* Asset */
+.jstree-open i[class*="XSAND000010000100007"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="XSAND000010000100007"]::before,
+i[class*="XSAND000010000100007"]::before { content: '\f03e'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="XSAND000010000100007"]::before { content: '\f03e'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="XSAND000010000100007"]::before,
+.jstree-clicked i[class*="XSAND000010000100007"]::before,
+.jstree-leaf > .jstree-clicked i[class*="XSAND000010000100007"]::before,
+.jstree-open > .jstree-anchor > i[class*="XSAND000010000100007"]::before  { content: '\f03e'; font-family: FontAwesome; font-weight: 600 }
+
+ /* Person */
+.jstree-open i[class*="XSAND000010000100008"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="XSAND000010000100008"]::before,
+i[class*="XSAND000010000100008"]::before { content: '\f007'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="XSAND000010000100008"]::before { content: '\f007'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="XSAND000010000100008"]::before,
+.jstree-clicked i[class*="XSAND000010000100008"]::before,
+.jstree-leaf > .jstree-clicked i[class*="XSAND000010000100008"]::before,
+.jstree-open > .jstree-anchor > i[class*="XSAND000010000100008"]::before  { content: '\f007'; font-family: FontAwesome; font-weight: 600 }
+
+
+ /* Shopping Cart */
+.jstree-open i[class*="XSAND00001000010000200001"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="XSAND00001000010000200001"]::before,
+i[class*="XSAND00001000010000200001"]::before { content: '\f07a'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="XSAND00001000010000200001"]::before { content: '\f07a'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="XSAND00001000010000200001"]::before,
+.jstree-clicked i[class*="XSAND00001000010000200001"]::before,
+.jstree-leaf > .jstree-clicked i[class*="XSAND00001000010000200001"]::before,
+.jstree-open > .jstree-anchor > i[class*="XSAND00001000010000200001"]::before  { content: '\f07a'; font-family: FontAwesome; font-weight: 600 }
+
+/*
+<public:attach event="onload" for="window" onevent="initialise()" />
+<script type="text/javascript">
+"use strict"
+function initialise(){
+
+	var icons = [
+			{ ot: 'XSAND000010000100007', font: 'f03e', name: 'Asset' },
+			{ ot: 'XSAND000010000100008', font: 'f007', name: 'Person' },
+			{ ot: 'XSAND0000100001000090000L', font: 'f073', name: 'Event' },
+			{ ot: 'XSAND00001000010000200001', font: 'f07a', name: 'Shopping Cart' }
+		];
+
+	icons.forEach(function(style){
+		console.log(style)
+		document.write(`.jstree-open i[class*="${style.ot}"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="${style.ot}"]::before,
+i[class*="${style.ot}"]::before { content: '\${style.font}'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="${style.ot}"]::before { content: '\${style.font}'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="${style.ot}"]::before,
+.jstree-clicked i[class*="${style.ot}"]::before,
+.jstree-leaf > .jstree-clicked i[class*="${style.ot}"]::before,
+.jstree-open > .jstree-anchor > i[class*="${style.ot}"]::before  { content: '\${style.font}'; font-family: FontAwesome; font-weight: 600 }`)
+
+		});
+}
+</script>
+*/
+
+.jstree-clicked .jstree-themeicon.XML::before { content: '\f15c'; font-family: FontAwesome; }
+
 
 /*
 	jquery ui reset
@@ -233,3 +342,30 @@ header {
 .ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { border-bottom-left-radius: 0; }
 .ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { border-top-right-radius: 0; }
 .ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { border-top-left-radius: 0; }
+
+
+.ui-tabs .ui-tabs-nav { padding: 0; margin: 0;}
+.ui-tabs .ui-tabs-nav li { margin: 0 3px 3px 0; border-bottom-width: 1px; }
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor { padding: 5px 8px; }
+
+.ui-widget-header { background-image: none; background-color: #0072C6; border-color: #0072C6; position: absolute; top: 0; right: 0; left: 0; height: 30px; overflow-y: auto; }
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { background-color: #ffffff; background-image: none;}
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #0072C6;}
+
+.ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #ffffff; color: #ffffff; background-image: none; background-color: #0072C6; }
+.ui-state-active a, .ui-state-active a:link, .ui.state-active a:visited { color: #ffffff;}
+
+.ui-state-focus, .ui-state-hover, .ui-widget-header .ui-state-focus, .ui-widget-header .ui-state-hover, .ui-widget-content .ui-state-focus, .ui-widget-content .ui-state-hover  { border-color: #0072C6; opacity: .7}
+
+/*.ui-state-focus, .ui-widget-header .ui-state-focus, .ui-widget-content .ui-state-focus { opacity: 1; }*/
+
+.ui-state-focus a, .ui-state-hover a { border-color: #0072C6; }
+.ui-tabs .ui-tabs-nav li.ui-tabs-active { margin-bottom: 0; padding-bottom: 0; opacity: 1; }
+
+.ui-tabs-active, .ui-state-active,
+.ui-tabs-active:focus, .ui-state-active:focus,
+.ui-tabs-active.ui-state-hover, .ui-state-active.ui-state-hover { opacity: 1; border-color: #ffffff; }
+
+.ui-resizable-handle { background-color: #0072c6; }

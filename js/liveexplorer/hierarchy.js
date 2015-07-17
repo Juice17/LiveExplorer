@@ -15,18 +15,23 @@ var Hierarchy = function Hierarchy(){
 	this.data = {
 		nodes: []
 	};
+
+	this.maxItems = 250;
+
 // 'plugins': ['contextmenu', 'dnd', 'search', 'sort', 'state', 'types'],
 
 	this.settings = {
 		jstree: { 'core' : {
 						'data' : {
-							'url': this.tree_data_url,
-							'data': this.tree_data_data,
-							'success': this.tree_data_success
+							'url': this.tree_data_url.bind(this),
+							'data': this.tree_data_data.bind(this),
+							'success': this.tree_data_success.bind(this)
 						},
-						'check_callback': true
+						// 'check_callback': true
+						'check_callback': this.tree_modify_allow.bind(this)
 					},
-					'plugins': ['search', 'sort', 'state', 'types'],
+					// 'plugins': ['search', 'sort', 'state', 'types'],
+					'plugins': ['search', 'state', 'types'],
 					'expand_selected_onload': true,
 					'progressive_render': true 
 				}
@@ -57,7 +62,7 @@ Hierarchy.prototype = {
 		this.Instance.Tree = $(this.Tree).jstree(true);
 
 		$(window).on('hashchange', function(e){
-			console.log(document.location.hash)
+			// console.log(document.location.hash)
 		})
 
 		LO.console.info('Hierarchy loaded');
@@ -72,34 +77,27 @@ Hierarchy.prototype = {
 		$(this.Tree)
 			.toggleClass('open', 500)		
 			.jstree(this.settings.jstree)
-			.on('select_node.jstree', function(e, data){
-				that.tree_select_node(e, data);
-			})
-			.on('create_node.jstree', function(node, parent, position){
-				that.tree_create_node(node, parent, position);
-			})
-			.on('load_node.jstree', function(node, status){
-				that.tree_load_node(node, status)
-			})
-			.on('open_node.jstree', function(node){
-				that.tree_open_node(node)
-			})
-			.on('copy.jstree', function(node){
-				LO.Utility.Copy(node);
-			})
-			.on('contextmenu.jstree', function(e){
-				console.info(e);
-				that.ContextMenu.open({ x: e.pageX, y: e.pageY });
-			})
-			.on('keydown.jstree', function(e){
-				that.tree_keydown(e);
-			})
-			.on('state_ready.jstree', function(){
-				that.tree_state_ready();
-			})
-			.on('loaded.jstree', function(e, data){
-				that.tree_loaded(e, data);
-			})
+			.on('select_node.jstree', that.tree_select_node.bind(that))
+			.on('create_node.jstree', that.tree_create_node.bind(that))
+			.on('load_node.jstree', that.tree_load_node.bind(that))
+			.on('open_node.jstree', that.tree_open_node.bind(that))
+			.on('copy.jstree', LO.Utility.Copy.bind(that))
+			.on('contextmenu.jstree', that.tree_contextmenu.bind(that))
+			.on('keydown.jstree', that.tree_keydown.bind(that))
+			.on('state_ready.jstree', that.tree_state_ready.bind(that))
+			.on('loaded.jstree', that.tree_loaded.bind(that))
+			.on('redraw.jstree', that.node_redraw.bind(that))
+	},
+
+	tree_contextmenu: function Hierarchy_tree_contextmenu(e){
+		var id = $(e.target).closest('a')[0].id.replace('_anchor', '');
+
+
+		this.ContextMenu.node = this.Instance.Tree.get_node(id);
+
+		// LO.console.info({ text: "tree_contextmenu", node: this.ContextMenu.node, id: id })
+
+		this.ContextMenu.open({ x: e.pageX, y: e.pageY })
 	},
 
 	tree_data_url: function Hierarchy_tree_data_url(node){
@@ -107,14 +105,18 @@ Hierarchy.prototype = {
 	},
 
 	tree_data_data: function Hierarchy_tree_data_data(node){
-		return node.id !== "#" ? { 'hpos': node.id } : null;
+		var startItem = node.startItem || 1;
+		startItem = ((parseInt(startItem) - 1) * parseInt(this.maxItems)) + 1;
+		return node.id !== "#" ? { 'hpos': node.id, i: startItem } : null;
 	},
 
 	/*
 	** Load node data into lookup tables
 	*/
-	tree_data_success: function Hierarchy_tree_data_success(data){
+	tree_data_success: function Hierarchy_tree_data_success(data, x){
+		// LO.console.info({ text: 'data_success', data: data})
 		data.forEach(function(item){
+			if(item.namepath && item.namepath.toUpperCase() === "PAGING") return;
 			var obj = {
 				HierarchyPosition: item.id.toUpperCase(),
 				NamePath: item.li_attr.namepath.toUpperCase(),
@@ -131,15 +133,51 @@ Hierarchy.prototype = {
 		});
 	},
 
+	// tree_modify_allow: function Hierarchy_modify_allow(operation, node, node_parent, node_position, more){
+	tree_modify_allow: function Hierarchy_modify_allow(){
+		// console.log({text: 'tree_modify_allow', arguments: arguments })
+		return true;
+	},
+
 	/*
 	** ************ Event handlers
 	*/
 	tree_keydown: function Hierarchy_tree_keydown(e){
 		console.log(e)
+		var node = this.Instance.Tree.get_node(e.target);
+
 		switch(e.keyCode){
+			/* f2*/
 			case 113:
 				this.Instance.Tree.edit(e.target);
 				break;
+			/* N || n */
+			case 78 || 110:
+				if(e.ctrlKey && node)
+					this.node_copy({ node: node, type: 'namepath'})
+				break;
+			/* H || h */
+			case 72 || 104:
+				if(e.ctrlKey && node)
+					this.node_copy({ node: node, type: 'id'})
+				break;
+			/* G || g */
+			case 71 || 103:
+				if(e.ctrlKey && node)
+					this.node_copy({ node: node, type: 'guid'})
+				break;
+			/* O || o */
+			case 79 || 111:
+				if(e.ctrlKey && node)
+					this.node_copy({ node: node, type: 'objectcode'})
+				break;
+
+			/* D || d */
+			case 68 || 100:
+				if(e.ctrlKey && node)
+					this.node_debug({ node: node })
+				break;
+
 		}
 	},
 
@@ -147,17 +185,17 @@ Hierarchy.prototype = {
 		this.Instance.Tree.open_node($('li:first-child', this.Tree));
 		this.Instance.Tree.select_node($('li:first-child', this.Tree));
 
-		this.ContextMenu = new ContextMenu_Hierarchy();
+		this.ContextMenu = new ContextMenu_Hierarchy({ Instance: this });
 		this.ContextMenu.draw();
 	},
 
-	tree_create_node: function Hierarchy_create_node(node, parent, position){
-		LO.console.info({ text: 'create_node', node: node })
+	tree_create_node: function Hierarchy_create_node(e, node, parent, position, instance){
+		LO.console.info({ text: 'create_node', node: node, parent: parent, position: position, instance: instance })
 	},
 
-	tree_load_node: function Hierarchy_load_node(node, status){
+	tree_load_node: function Hierarchy_load_node(e, node, status, instance){
 		var that = this;
-		LO.console.info({ text: 'load_node', node: node });
+		// LO.console.info({ text: 'load_node', node: node, status: status, instance: instance, event: e });
 /*		status.node.children.forEach(function(id){
 			setTimeout(function(){ 
 				that.node_bind_lazy(id); 
@@ -165,8 +203,8 @@ Hierarchy.prototype = {
 		});*/
 	},
 
-	tree_open_node: function Hierarchy_open_node(node){
-		LO.console.info('open node')
+	tree_open_node: function Hierarchy_open_node(e, node, instance){
+		// LO.console.info({ text: 'open node', arguments: arguments })
 	},
 
 	tree_select_node: function Hierarchy_tree_select_node(e, data){
@@ -185,6 +223,19 @@ Hierarchy.prototype = {
 	/*
 	** *************** Node actions
 	*/
+
+	node_copy: function Hierarchy_node_copy(p){
+    if(!p.type || !p.node || !p.node.li_attr[p.type]) return false;
+    LO.Clipboard.set(p.node.li_attr[p.type], 'text');
+	},
+
+	node_debug: function Hierarchy_node_debug(p){
+		if(!LO.Window.Debug)
+			LO.Window.Debug = window.open('http://infrastructure.stage.liveadmaker.com/.objectinspector?aobject=' + p.node.li_attr['objectcode']);
+		else
+			LO.Window.Debug.location.href ='http://infrastructure.stage.liveadmaker.com/.objectinspector?aobject=' + p.node.li_attr['objectcode'];
+	},
+
 	node_lookup: function Hierarchy_node_lookup(input, callback){
 		var node = null;
 
@@ -262,23 +313,53 @@ Hierarchy.prototype = {
 
 		}
 
+	},
+
+	node_redraw: function Hierarchy_node_redraw(e, data){
+		// LO.console.info({ text: 'node_redraw', this: this, e: e, data: data })
+		if(!data.nodes || data.nodes.length >1)
+			return false;
+		var node = data.instance.get_node(data.nodes[0]),
+			 kid	= node.children && node.children[0] && data.instance.get_node(node.children[0]) || null,
+			 sibs = kid && kid.li_attr && kid.li_attr.siblings || 0,
+			 page = kid && kid.li_attr && kid.li_attr.p || 1,
+			 pages = Math.ceil(parseInt(sibs)/this.maxItems),
+			 text = node.li_attr.text;
+
+		if(pages > 1) data.instance.rename_node(node, text + ' <i><b>(' + parseInt(page) + '/' + parseInt(pages) + ')</b></i>')
+		// console.info(node)
 	}
 };
 
 /* 
 *** TODO ***
-** Add paging for subnodes 
------------------------------------------------------------------------------------
-		var node = $(LE.Hierarchy.Tree).jstree().get_node('XSAND0000300001');
-		$(LE.Hierarchy.Tree).jstree().refresh_node(node)
 
+** Context Menu
 
-** Add custom context menu options 
------------------------------------------------------------------------------------
-		http://stackoverflow.com/questions/6727387/jstree-contextmenu-create-file-folder-function
+	-- Add new node
+	-- Re-order node
+	-- Remove node
+	-- Order By
+		-- Name
+		-- Date
+		-- Rank
 
-** Add copy/paste logic
------------------------------------------------------------------------------------
+** Only scrollIntoViewIfNeeded if outside of viewable area
+
+** Hot keys to peform tasks on nodes
+	-- Copy HPOS
+	-- Copy NamePath
+	-- Copy ObjectCode
+	-- Copy GUID
+	-- LiveServer Debug
+		-- manage window in LO
+
+** Tabs
+	-- Show property tabs
+	-- Populate Inheritance
+		-----------------------------------------------------------------------------------
+			http://sandboxjferrara.liveadmakerstage.com/Node:XSAND0000300001000030002E0000F.GetInheritanceTreeAsJson?fVersion=0&fLivePlatformVersion=0&aRfrshIdx=8&_nolivecache=42201.95187625
+			Order by InsertOrder, Indent by recurse level
 
 ** History -- back/forward.  Possibly use Hash
 -----------------------------------------------------------------------------------
@@ -287,3 +368,5 @@ Hierarchy.prototype = {
 -----------------------------------------------------------------------------------
 		http://www.html5rocks.com/en/tutorials/es7/observe/
 */
+
+

@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>LiveExplorer</title>
+   <!-- <link rel="stylesheet" type="text/css" href="css/font-awesome.css"> -->
+   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
 	<link rel="stylesheet" type="text/css" href="css/css.css">
+
 	<link rel="stylesheet" type="text/css" href="css/default/style.css">
+
+	<title>LiveExplorer</title>
 </head>
 <body>
 
@@ -31,61 +35,66 @@
 					<li class="tab"><a href="#tab_inheritance">Inheritance</a></li>
 					<li class="tab"><a href="#tab_items">Items</a></li>
 				</ul>
-				<div class="display" id="tab_smart">Smart tab</div>
-				<div class="display" id="tab_datatypes">DataTypes tab <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
-				<div class="display" id="tab_relationships">
-					<table class="relationships">
-						<thead>
-							<tr>
-								<th>Object Name</th>
-								<th>Category</th>
-								<th>Category Tag</th>
-								<th>Rank</th>
-								<th>Type</th>
-								<th>NamePath</th>
-							</tr>	
-						</thead>
-						<tbody id="content_relationships" class='tab-content'>
-							
-						</tbody>
-					</table>
-				</div>
-				<div class="display" id="tab_reverserelationships">
-					<table class="relationships">
-						<thead>
-							<tr>
-								<th>Object Name</th>
-								<th>Category</th>
-								<th>Category Tag</th>
-								<th>Rank</th>
-								<th>Type</th>
-								<th>NamePath</th>
-							</tr>	
-						</thead>
-						<tbody id="content_reverserelationships" class='tab-content'>
-						</tbody>
-					</table>
-				</div>
-				<div class="display" id="tab_virtualnodes">Virtual Nodes tab</div>
-				<div class="display" id="tab_inheritance">Inheritance tab</div>
-				<div class="display" id="tab_items">
-					<table class="items">
-						<thead>
-							<tr>
-								<th>Object Name</th>
-								<th>Created</th>
-								<th>Last Update</th>
-								<th>ObjectType</th>
-								<th>NodeType</th>
-								<th>NamePath</th>
-							</tr>	
-						</thead>
-						<tbody id="content_items" class='tab-content'>
-							
-						</tbody>
-					</table>
-				</div>
-			</div>
+				<div id="tab_display">
+					
+
+					<div class="display" id="tab_smart">Smart tab</div>
+					<div class="display" id="tab_datatypes">DataTypes tab <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+					<div class="display" id="tab_relationships">
+						<table class="relationships">
+							<thead>
+								<tr>
+									<th>Object Name</th>
+									<th>Category</th>
+									<th>Category Tag</th>
+									<th>Rank</th>
+									<th>Type</th>
+									<th>NamePath</th>
+								</tr>	
+							</thead>
+							<tbody id="content_relationships" class='tab-content'>
+								
+							</tbody>
+						</table>
+					</div>
+					<div class="display" id="tab_reverserelationships">
+						<table class="relationships">
+							<thead>
+								<tr>
+									<th>Object Name</th>
+									<th>Category</th>
+									<th>Category Tag</th>
+									<th>Rank</th>
+									<th>Type</th>
+									<th>NamePath</th>
+								</tr>	
+							</thead>
+							<tbody id="content_reverserelationships" class='tab-content'>
+							</tbody>
+						</table>
+					</div>
+					<div class="display" id="tab_virtualnodes">Virtual Nodes tab</div>
+					<div class="display" id="tab_inheritance">Inheritance tab</div>
+					<div class="display" id="tab_items">
+						<table class="items">
+							<thead>
+								<tr>
+									<th>Object Name</th>
+									<th>Created</th>
+									<th>Last Update</th>
+									<th>ObjectType</th>
+									<th>NodeType</th>
+									<th>NamePath</th>
+								</tr>	
+							</thead>
+							<tbody id="content_items" class='tab-content'>
+								
+							</tbody>
+						</table>
+					</div>
+
+				</div> <!-- #tab_display -->
+			</div> <!-- #tab_container -->
 		</div> <!-- #display -->
 
 	</div> <!-- #body -->
@@ -93,7 +102,8 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
 
-	<script type="text/javascript" src="js/jstree/jstree.min.js"></script>
+	<!-- <script type="text/javascript" src="js/jstree/jstree.min.js"></script> -->
+	<script type="text/javascript" src="js/jstree/jstree.js"></script>
 	<script type="text/javascript" src="js/jstree/jstree.contextmenu.js"></script>
 	<script type="text/javascript" src="js/jstree/jstree.dnd.js"></script>
 	<script type="text/javascript" src="js/jstree/jstree.search.js"></script>

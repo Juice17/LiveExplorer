@@ -2,7 +2,8 @@
 
 class Tray {
 	constructor(settings){
-		this.Tray 		= new LO.GUI.Tray({ title: 'JuiceExplorer', tooltip: 'JuiceExplorer', icon: '/images/icons/tray.png' });
+		// this.Tray 		= new LO.GUI.Tray({ title: 'JuiceExplorer', tooltip: 'JuiceExplorer', icon: '/images/icons/tray.png' });
+		this.Tray 		= new LO.GUI.Tray({ title: 'JuiceExplorer', tooltip: 'JuiceExplorer', icon: '/images/icons/nodeExplorer_small.png' });
 		this.Tray.menu = new LO.GUI.Menu();
 
 		this.addTrayItem({ label: 'Exit', callback: function(){
