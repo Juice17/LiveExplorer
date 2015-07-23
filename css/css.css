@@ -1,4 +1,6 @@
+/*
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800);
+*/
 
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
@@ -237,6 +239,71 @@ header {
 .jstree-themeicon-custom { font-style: normal; color: #0078D7; }
 
 /* Object */
+.jstree-closed i[class*="0000100001"]::before { content: '\f114'; font-family: FontAwesome; }
+.jstree-open i[class*="0000100001"]::before { content: '\f115'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="0000100001"]::before { content: '\f114'; font-family: FontAwesome; }
+.jstree-closed > .jstree-clicked i[class*="0000100001"]::before { content: '\f07b'; font-family: FontAwesome; }
+
+.jstree-open > .jstree-anchor > i[class*="0000100001"]::before { content: '\f115'; font-family: FontAwesome; }
+.jstree-open > .jstree-clicked i[class*="0000100001"]::before { content: '\f07c'; font-family: FontAwesome; }
+
+.jstree-leaf > .jstree-anchor > i[class*="0000100001"]::before { content: '\f115'; font-family: FontAwesome;  }
+.jstree-leaf > .jstree-clicked i[class*="0000100001"]::before { content: '\f07c'; font-family: FontAwesome; }
+
+/* Event */
+.jstree-open i[class*="0000100001000090000L"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="0000100001000090000L"]::before,
+i[class*="0000100001000090000L"]::before { content: '\f073'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="0000100001000090000L"]::before { content: '\f073'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="0000100001000090000L"]::before,
+.jstree-clicked i[class*="0000100001000090000L"]::before,
+.jstree-leaf > .jstree-clicked i[class*="0000100001000090000L"]::before,
+.jstree-open > .jstree-anchor > i[class*="0000100001000090000L"]::before  { content: '\f073'; font-family: FontAwesome; font-weight: 600 }
+
+
+
+ /* Asset */
+.jstree-open i[class*="000010000100007"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="000010000100007"]::before,
+i[class*="000010000100007"]::before { content: '\f03e'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="000010000100007"]::before { content: '\f03e'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="000010000100007"]::before,
+.jstree-clicked i[class*="000010000100007"]::before,
+.jstree-leaf > .jstree-clicked i[class*="000010000100007"]::before,
+.jstree-open > .jstree-anchor > i[class*="000010000100007"]::before  { content: '\f03e'; font-family: FontAwesome; font-weight: 600 }
+
+ /* Person */
+.jstree-open i[class*="000010000100008"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="000010000100008"]::before,
+i[class*="000010000100008"]::before { content: '\f007'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="000010000100008"]::before { content: '\f007'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="000010000100008"]::before,
+.jstree-clicked i[class*="000010000100008"]::before,
+.jstree-leaf > .jstree-clicked i[class*="000010000100008"]::before,
+.jstree-open > .jstree-anchor > i[class*="000010000100008"]::before  { content: '\f007'; font-family: FontAwesome; font-weight: 600 }
+
+
+ /* Shopping Cart */
+.jstree-open i[class*="00001000010000200001"]::before,
+.jstree-leaf > .jstree-anchor > i[class*="00001000010000200001"]::before,
+i[class*="00001000010000200001"]::before { content: '\f07a'; font-family: FontAwesome; }
+
+.jstree-closed > .jstree-anchor > i[class*="00001000010000200001"]::before { content: '\f07a'; font-family: FontAwesome; }
+
+.jstree-clicked i[class*="00001000010000200001"]::before,
+.jstree-clicked i[class*="00001000010000200001"]::before,
+.jstree-leaf > .jstree-clicked i[class*="00001000010000200001"]::before,
+.jstree-open > .jstree-anchor > i[class*="00001000010000200001"]::before  { content: '\f07a'; font-family: FontAwesome; font-weight: 600 }
+
+/*
+
 .jstree-closed i[class*="XSAND0000100001"]::before { content: '\f114'; font-family: FontAwesome; }
 .jstree-open i[class*="XSAND0000100001"]::before { content: '\f115'; font-family: FontAwesome; }
 
@@ -249,7 +316,6 @@ header {
 .jstree-leaf > .jstree-anchor > i[class*="XSAND0000100001"]::before { content: '\f115'; font-family: FontAwesome;  }
 .jstree-leaf > .jstree-clicked i[class*="XSAND0000100001"]::before { content: '\f07c'; font-family: FontAwesome; }
 
-/* Event */
 .jstree-open i[class*="XSAND0000100001000090000L"]::before,
 .jstree-leaf > .jstree-anchor > i[class*="XSAND0000100001000090000L"]::before,
 i[class*="XSAND0000100001000090000L"]::before { content: '\f073'; font-family: FontAwesome; }
@@ -261,9 +327,6 @@ i[class*="XSAND0000100001000090000L"]::before { content: '\f073'; font-family: F
 .jstree-leaf > .jstree-clicked i[class*="XSAND0000100001000090000L"]::before,
 .jstree-open > .jstree-anchor > i[class*="XSAND0000100001000090000L"]::before  { content: '\f073'; font-family: FontAwesome; font-weight: 600 }
 
-
-
- /* Asset */
 .jstree-open i[class*="XSAND000010000100007"]::before,
 .jstree-leaf > .jstree-anchor > i[class*="XSAND000010000100007"]::before,
 i[class*="XSAND000010000100007"]::before { content: '\f03e'; font-family: FontAwesome; }
@@ -275,7 +338,6 @@ i[class*="XSAND000010000100007"]::before { content: '\f03e'; font-family: FontAw
 .jstree-leaf > .jstree-clicked i[class*="XSAND000010000100007"]::before,
 .jstree-open > .jstree-anchor > i[class*="XSAND000010000100007"]::before  { content: '\f03e'; font-family: FontAwesome; font-weight: 600 }
 
- /* Person */
 .jstree-open i[class*="XSAND000010000100008"]::before,
 .jstree-leaf > .jstree-anchor > i[class*="XSAND000010000100008"]::before,
 i[class*="XSAND000010000100008"]::before { content: '\f007'; font-family: FontAwesome; }
@@ -288,7 +350,6 @@ i[class*="XSAND000010000100008"]::before { content: '\f007'; font-family: FontAw
 .jstree-open > .jstree-anchor > i[class*="XSAND000010000100008"]::before  { content: '\f007'; font-family: FontAwesome; font-weight: 600 }
 
 
- /* Shopping Cart */
 .jstree-open i[class*="XSAND00001000010000200001"]::before,
 .jstree-leaf > .jstree-anchor > i[class*="XSAND00001000010000200001"]::before,
 i[class*="XSAND00001000010000200001"]::before { content: '\f07a'; font-family: FontAwesome; }
@@ -300,7 +361,7 @@ i[class*="XSAND00001000010000200001"]::before { content: '\f07a'; font-family: F
 .jstree-leaf > .jstree-clicked i[class*="XSAND00001000010000200001"]::before,
 .jstree-open > .jstree-anchor > i[class*="XSAND00001000010000200001"]::before  { content: '\f07a'; font-family: FontAwesome; font-weight: 600 }
 
-/*
+
 <public:attach event="onload" for="window" onevent="initialise()" />
 <script type="text/javascript">
 "use strict"

@@ -19,7 +19,15 @@ var Hierarchy = function Hierarchy(){
 	this.maxItems = 250;
 
 // 'plugins': ['contextmenu', 'dnd', 'search', 'sort', 'state', 'types'],
-
+// 'plugins': ['search', 'sort', 'state', 'types'],
+// 'check_callback': true
+/*						'data' : {
+							'url': this.tree_data_url.bind(this),
+							'data': this.tree_data_data.bind(this),
+							'success': this.tree_data_success.bind(this)
+						},
+						'data' : this.tree_data.bind(this),
+*/
 	this.settings = {
 		jstree: { 'core' : {
 						'data' : {
@@ -27,10 +35,8 @@ var Hierarchy = function Hierarchy(){
 							'data': this.tree_data_data.bind(this),
 							'success': this.tree_data_success.bind(this)
 						},
-						// 'check_callback': true
 						'check_callback': this.tree_modify_allow.bind(this)
 					},
-					// 'plugins': ['search', 'sort', 'state', 'types'],
 					'plugins': ['search', 'state', 'types'],
 					'expand_selected_onload': true,
 					'progressive_render': true 
@@ -62,7 +68,7 @@ Hierarchy.prototype = {
 		this.Instance.Tree = $(this.Tree).jstree(true);
 
 		$(window).on('hashchange', function(e){
-			// console.log(document.location.hash)
+			// console.log(e);
 		})
 
 		LO.console.info('Hierarchy loaded');
@@ -73,6 +79,13 @@ Hierarchy.prototype = {
 	*/
 	tree_create: function Hierarchy_tree_create(){
 		var that = this;
+
+
+
+		document.getElementsByTagName('body')[0].addEventListener('keydown', function(e){
+			// console.log(e);
+
+		})
 
 		$(this.Tree)
 			.toggleClass('open', 500)		
@@ -87,6 +100,8 @@ Hierarchy.prototype = {
 			.on('state_ready.jstree', that.tree_state_ready.bind(that))
 			.on('loaded.jstree', that.tree_loaded.bind(that))
 			.on('redraw.jstree', that.node_redraw.bind(that))
+			.on('focus.jstree', that.tree_focus.bind(that))
+
 	},
 
 	tree_contextmenu: function Hierarchy_tree_contextmenu(e){
@@ -98,6 +113,19 @@ Hierarchy.prototype = {
 		// LO.console.info({ text: "tree_contextmenu", node: this.ContextMenu.node, id: id })
 
 		this.ContextMenu.open({ x: e.pageX, y: e.pageY })
+	},
+
+	tree_data: function Hierarchy_tree_data(node, callback){
+		var source = this.tree_data_data(node),
+			 hpos = 	source && source.hpos || '',
+			 data = { i: source && source.i || 1 };
+
+		LO.Node.Get({ 
+			source: hpos, 
+			action: 'treejson', 
+			data: data 
+		}, callback, this);
+
 	},
 
 	tree_data_url: function Hierarchy_tree_data_url(node){
@@ -142,8 +170,13 @@ Hierarchy.prototype = {
 	/*
 	** ************ Event handlers
 	*/
+
+	tree_focus: function Hierarchy_tree_focus(e){
+		// console.log({ text: 'tree_focus', e: e })
+	},
+
 	tree_keydown: function Hierarchy_tree_keydown(e){
-		console.log(e)
+		// console.log(e)
 		var node = this.Instance.Tree.get_node(e.target);
 
 		switch(e.keyCode){
@@ -193,14 +226,9 @@ Hierarchy.prototype = {
 		LO.console.info({ text: 'create_node', node: node, parent: parent, position: position, instance: instance })
 	},
 
-	tree_load_node: function Hierarchy_load_node(e, node, status, instance){
+	tree_load_node: function Hierarchy_load_node(e, node){
 		var that = this;
-		// LO.console.info({ text: 'load_node', node: node, status: status, instance: instance, event: e });
-/*		status.node.children.forEach(function(id){
-			setTimeout(function(){ 
-				that.node_bind_lazy(id); 
-			}, 200)
-		});*/
+		// LO.console.info({ text: 'load_node', args: arguments});
 	},
 
 	tree_open_node: function Hierarchy_open_node(e, node, instance){
@@ -211,7 +239,9 @@ Hierarchy.prototype = {
 		var node = data.node;
 		LE.AddressBar.set(data.node);
 
-		document.getElementById(data.node.id).scrollIntoViewIfNeeded(true);
+		// LO.console.log({ 'text': 'select_node', arguments: arguments });
+		// document.getElementById(data.node.id).scrollIntoViewIfNeeded(true);
+		document.activeElement = document.getElementById(data.node.id);
 	},
 
 	// runs when the state plugin has finished loading the saved state
@@ -259,36 +289,47 @@ Hierarchy.prototype = {
 
 		var that = this;
 
-		if(node && typeof node === "string") 
-			return callback && typeof callback === "function" ? callback.call(that, node) : node;
+		if(node && typeof node === "string" && this.Instance.Tree.get_node(node))
+			return callback && typeof callback === "function" ? callback.call(that, node, {}, input) : node;
 
-		LO.Node.Get({ source: '', action: 'TreeObject', data: { id: input } }, function(response){
+/*		LO.Node.Get({ source: '', action: 'TreeObject', data: { id: input } }, function(response){
 			if(callback && typeof callback === "function") 
-				return callback.call(that, response.HierarchyPosition || null);
+				return callback.call(that, response.HierarchyPosition || null, input);
 			return response.HierarchyPosition || null;
+		}, that);*/
+		LO.Node.Get({ source: '', action: 'TreeNode', data: { id: input } }, function(node){
+			if(callback && typeof callback === "function") 
+				return callback.call(that, node.id, node, input);
+			return node;
 		}, that);
-
 	},
 
 	node_open: function Hierarchy_node_open(id){
 		var node = this.node_lookup(id, this.node_open_complete);
 	},
 
-	node_open_complete: function Hierarchy_node_open_complete(node){
-		if(!node) return LO.alert('\'' + node + '\' does not exist!')
+	node_open_complete: function Hierarchy_node_open_complete(id, node, input){
+		// if(!node) return LO.alert('\'' + node + '\' does not exist!')
+		// if(!node) return LO.alert('\'' + input + '\' does not exist!')
+		if(!id) return LO.alert('\'' + input + '\' does not exist!')
+
+		if(id.toUpperCase().indexOf(LO.Data.Application.HierarchyPosition) < 0)
+			return LO.alert(`'${input}' resolves to a node outside of this application.`);
 
 		this.Instance.Tree.deselect_all();
-		this.node_open_recurse(node);
+		this.node_open_recurse(id, node);
+		
+		// document.getElementById(node).scrollIntoViewIfNeeded(true);
 	},
 
-	node_open_recurse: function Hierarchy_node_open_recurse(node){
+	node_open_recurse: function Hierarchy_node_open_recurse(id, node){
 		var that = this;
 
 		/* supplied node is found*/
-		if(this.Instance.Tree.get_node(node)) {
+		if(this.Instance.Tree.get_node(id)) {
 
 			/* open the node*/
-			this.Instance.Tree.open_node(node, function(node){
+			this.Instance.Tree.open_node(id, function(node){
 
 				/* check to see if this is the bottom most node */
 				if(that.data.nodes && that.data.nodes.length > 0) {
@@ -296,7 +337,7 @@ Hierarchy.prototype = {
 					var n = that.data.nodes[0];
 					that.data.nodes.shift();
 
-					that.node_open_recurse(n);
+					that.node_open_recurse(n, node);
 				} else {
 					/* bottom most, select node */
 					that.Instance.Tree.select_node(node)
@@ -304,12 +345,16 @@ Hierarchy.prototype = {
 
 			});
 
+		} else if(id === node.id && node.parent && this.Instance.Tree.get_node(node.parent)) {
+
+			this.Instance.Tree.create_node(`#${node.parent}`, node, "last", that.Instance.Tree.select_node);
+
 		} else {
 
 			if(!that.data.nodes) that.data.nodes = [];
 
-			that.data.nodes.unshift(node)
-			this.node_open_recurse(node.substr(0, node.length-5))
+			that.data.nodes.unshift(id)
+			this.node_open_recurse(id.substr(0, id.length-5), node)
 
 		}
 
@@ -334,10 +379,21 @@ Hierarchy.prototype = {
 /* 
 *** TODO ***
 
+** Hierarchy
+	-- Ctrl-Click drag
+
+** Paging
+	-- Problem displaying sub levels of nodes that are not currently displayed	
+		ex: [Application]\\Structure\\Organization\\Users, then type in Wilson Dam\\Cart
+
 ** Context Menu
 
 	-- Add new node
 	-- Re-order node
+		-- Open modal
+			Insert Before
+			Insert After
+			Insert Below
 	-- Remove node
 	-- Order By
 		-- Name
@@ -347,12 +403,7 @@ Hierarchy.prototype = {
 ** Only scrollIntoViewIfNeeded if outside of viewable area
 
 ** Hot keys to peform tasks on nodes
-	-- Copy HPOS
-	-- Copy NamePath
-	-- Copy ObjectCode
-	-- Copy GUID
-	-- LiveServer Debug
-		-- manage window in LO
+	-- Node losing focus on select
 
 ** Tabs
 	-- Show property tabs
@@ -361,7 +412,7 @@ Hierarchy.prototype = {
 			http://sandboxjferrara.liveadmakerstage.com/Node:XSAND0000300001000030002E0000F.GetInheritanceTreeAsJson?fVersion=0&fLivePlatformVersion=0&aRfrshIdx=8&_nolivecache=42201.95187625
 			Order by InsertOrder, Indent by recurse level
 
-** History -- back/forward.  Possibly use Hash
+** History -- back/forward.  Possibly use Hash or pushState
 -----------------------------------------------------------------------------------
 
 ** Object.observe

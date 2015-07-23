@@ -22,10 +22,7 @@ class AddressBar{
 		var that = this;
 
 		$(this.Element)
-			.on('click', function(e){
-				// if(LO.previousElement !== document.activeElement) $(this).select();
-			})
-			.on('keypress', function(e){
+				.on('keypress', function(e){
 				switch (e.which){
 					case 13:
 						LE.Hierarchy.node_open(this.value);
@@ -51,6 +48,8 @@ class AddressBar{
 		this.Element.value = node.li_attr.namepath;
 
 		document.location.hash = node.id;
+
+		document.getElementById(`${node.id}_anchor`).focus();
 
 		Object.getNotifier(this).performChange('data', function(){
 			that.Data = {

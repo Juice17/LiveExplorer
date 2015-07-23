@@ -15,6 +15,10 @@ var LO = {
 		Content: {}
 	},
 
+	Request: require('request'),
+
+	requestPromise: require('request-promise'),
+
 	Node: {
 		/*
 			The current node that is being displayed in the address bar/selected in the hierarchy
@@ -29,21 +33,78 @@ var LO = {
 			}
 		*/
 		Get: function LO_Node_Get(p, callback, bindTo){
-			var url = LO.Data.Application.Domain + '/' + p.source + '.' + p.action,
+/*			var url = LO.Data.Application.Domain + '/' + p.source + '.' + p.action,
 				 method = p.method || 'GET';
 
 			$.ajax({
 				'url': url,
 				'data': p.data,
 				'type': method,
-				/*'success': callback,*/
 				success: function(data){
 					if(callback && typeof callback === 'function')
 						callback.call(bindTo, data)
 				},
 				'error': LO.ErrorHandler && typeof LO.ErrorHandler === "function" ? LO.ErrorHandler : null
-			})
+			})*/
+
+/*			var path = '/' + p.source + '.' + p.action + '?' + LO.Utility.toQueryString(p.data)
+				 options = {
+					host: LO.Data.Application.Domain,
+					port: 80,
+					path: path,
+					method: p.method
+				 },
+				 request = http.request(options, function(response){
+				 	console.log(`Status: {$response.statusCode}`);
+				 	console.log(`Headers: {$JSON.stringify(response.headers)}`);
+				 	response.encoding('utf8');
+				 	response.on('data', function(chunk){
+				 		console.log(`Body: {$chunk}`)
+				 	})
+				 });
+				 request.on('error', function(e){
+				 	console.log(e);
+				 });
+				 request.end();
+*/
+			var path = LO.Data.Application.Domain + '/' + p.source + '.' + p.action + '?' + LO.Utility.toQueryString(p.data),
+				 options = {
+					host: LO.Data.Application.Domain,
+					port: 80,
+					path: path,
+					method: p.method
+				 },
+				 ret;
+			
+
+			if(callback){
+
+				LO.Request(path, function(error, response, body){
+					if(error) 
+						return LO.Node.Get_Error(error);
+
+					if(callback && typeof callback === "function")
+						callback.call(bindTo, JSON.parse(body));
+				});
+
+			} else {
+
+				LO.requestPromise(path)
+					.then(function(resp){ 
+						return JSON.parse(resp) 
+					})
+			}
+
+		},
+
+		Get_Error: function LO_Node_Get_Error(error){
+			console.log(error);
+		},
+
+		getUrl: function LO_Node_getUrl(p){
+			return LO.Data.Application.Domain + '/' + p.source + '.' + p.action + '?' + LO.Utility.toQueryString(p.data);
 		}
+
 	},
 
 	Window: {
@@ -87,6 +148,18 @@ var LO = {
 			LO.console.log(clipboard.get('text'))
 			// And clear it!
 			// clipboard.clear();
+		},
+
+		toQueryString(obj){
+			var querystring = '';
+
+			for(var key in obj){
+				if(querystring.length)
+					querystring += '&';
+				querystring += key + '=' + escape(obj[key]);
+			}
+
+			return querystring;
 		}
 	},
 
@@ -105,7 +178,3 @@ var LO = {
 	}
 };
 LO.Clipboard = LO.GUI.Clipboard.get();
-
-window.addEventListener('onFocus', function(){
-
-});
